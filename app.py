@@ -13,7 +13,12 @@ LABEL = ['Bisa Meminjam (0)', "Tidak Bisa Meminjam (1)"]
 st.title("Loan Eligibility Prediction")
 
 # Create input fields
-Applicant_Age = st.selectbox("Applicant Age", options=list(range(21, 80)), index=0)  # 30 Years = index 9
+age_options = [f"{i+21} Years" for i in range(59)]  # Generates age options from 21 to 79
+age_mapping = {f"{i+21} Years": i for i in range(59)}  # Creates a mapping from age to index
+
+Applicant_Age = st.selectbox("Applicant Age", options=age_options, index=0)  # Default to "21 Years"
+Applicant_Age_numeric = age_mapping[Applicant_Age] + 21  # Map selected option to numeric value
+
 Work_Experience = st.selectbox("Work Experience", options=list(range(0, 21)), index=1)  # 5 Years = index 5
 Marital_Status = st.selectbox("Marital Status", ["Married", "Single"])  # Changed to descriptive options
 House_Ownership = st.selectbox("House Ownership", ["Not Both", "Owned", "Rented"])  # Changed to new options
@@ -56,7 +61,7 @@ occupation_mapping = {
 # Prediction button
 if st.button("Predict"):
     new_data = np.array([[
-        Applicant_Age, 
+        Applicant_Age_numeric, 
         Work_Experience, 
         marital_status_mapping[Marital_Status], 
         house_ownership_mapping[House_Ownership], 
@@ -71,6 +76,85 @@ if st.button("Predict"):
     result_label = LABEL[int(result[0])]
 
     st.write("Prediction Result: ", result_label)
+
+
+
+
+
+
+# import streamlit as st
+# import numpy as np
+# import xgboost as xgb
+# import pickle
+
+# # Load the model
+# with open("xgb_model.pkl", "rb") as model_file:
+#     xgb_model = pickle.load(model_file)
+
+# LABEL = ['Bisa Meminjam (0)', "Tidak Bisa Meminjam (1)"]
+
+# # Streamlit app
+# st.title("Loan Eligibility Prediction")
+
+# # Create input fields
+# Applicant_Age = st.selectbox("Applicant Age", options=list(range(21, 80)), index=0)  # 30 Years = index 9
+# Work_Experience = st.selectbox("Work Experience", options=list(range(0, 21)), index=1)  # 5 Years = index 5
+# Marital_Status = st.selectbox("Marital Status", ["Married", "Single"])  # Changed to descriptive options
+# House_Ownership = st.selectbox("House Ownership", ["Not Both", "Owned", "Rented"])  # Changed to new options
+# Vehicle_Ownership_Car = st.selectbox("Vehicle Ownership (Car)", ["No", "Yes"])  # Changed to descriptive options
+# Occupation = st.selectbox("Occupation", [
+#     "Air traffic controller", "Analyst", "Architect", "Army officer", "Artist", "Aviator", 
+#     "Biomedical Engineer", "Chartered Accountant", "Chef", "Chemical engineer", 
+#     "Civil engineer", "Civil servant", "Comedian", "Computer hardware engineer", 
+#     "Computer operator", "Consultant", "Dentist", "Design Engineer", "Designer", 
+#     "Drafter", "Economist", "Engineer", "Fashion Designer", "Financial Analyst", 
+#     "Firefighter", "Flight attendant", "Geologist", "Graphic Designer", "Hotel Manager", 
+#     "Industrial Engineer", "Lawyer", "Librarian", "Magistrate", "Mechanical engineer", 
+#     "Microbiologist", "Official", "Petroleum Engineer", "Physician", "Police officer", 
+#     "Politician", "Psychologist", "Scientist", "Secretary", "Software Developer", 
+#     "Statistician", "Surgeon", "Surveyor", "Technical writer", "Technician", 
+#     "Technology specialist", "Web designer"
+# ])
+# Years_in_Current_Employment = st.selectbox("Years in Current Employment", options=list(range(0, 15)), index=1)  # 10 Years = index 10
+# Years_in_Current_Residence = st.selectbox("Years in Current Residence", options=list(range(10, 15)), index=3)  # 10 Years = index 0
+# Annual_Income_IDR = st.number_input("Annual Income (IDR)", min_value=0, value=50000000)
+
+# # Map categorical inputs to numeric values
+# marital_status_mapping = {"Married": 0, "Single": 1}
+# house_ownership_mapping = {"Not Both": 0, "Owned": 1, "Rented": 2}
+# vehicle_ownership_car_mapping = {"No": 0, "Yes": 1}
+# occupation_mapping = {
+#     "Air traffic controller": 0, "Analyst": 1, "Architect": 2, "Army officer": 3, "Artist": 4, "Aviator": 5, 
+#     "Biomedical Engineer": 6, "Chartered Accountant": 7, "Chef": 8, "Chemical engineer": 9, 
+#     "Civil engineer": 10, "Civil servant": 11, "Comedian": 12, "Computer hardware engineer": 13, 
+#     "Computer operator": 14, "Consultant": 15, "Dentist": 16, "Design Engineer": 17, "Designer": 18, 
+#     "Drafter": 19, "Economist": 20, "Engineer": 21, "Fashion Designer": 22, "Financial Analyst": 23, 
+#     "Firefighter": 24, "Flight attendant": 25, "Geologist": 26, "Graphic Designer": 27, "Hotel Manager": 28, 
+#     "Industrial Engineer": 29, "Lawyer": 30, "Librarian": 31, "Magistrate": 32, "Mechanical engineer": 33, 
+#     "Microbiologist": 34, "Official": 35, "Petroleum Engineer": 36, "Physician": 37, "Police officer": 38, 
+#     "Politician": 39, "Psychologist": 40, "Scientist": 41, "Secretary": 42, "Software Developer": 43, 
+#     "Statistician": 44, "Surgeon": 45, "Surveyor": 46, "Technical writer": 47, "Technician": 48, 
+#     "Technology specialist": 49, "Web designer": 50
+# }
+
+# # Prediction button
+# if st.button("Predict"):
+#     new_data = np.array([[
+#         Applicant_Age, 
+#         Work_Experience, 
+#         marital_status_mapping[Marital_Status], 
+#         house_ownership_mapping[House_Ownership], 
+#         vehicle_ownership_car_mapping[Vehicle_Ownership_Car], 
+#         occupation_mapping[Occupation], 
+#         Years_in_Current_Employment, 
+#         Years_in_Current_Residence, 
+#         Annual_Income_IDR
+#     ]])
+    
+#     result = xgb_model.predict(new_data)
+#     result_label = LABEL[int(result[0])]
+
+#     st.write("Prediction Result: ", result_label)
 
 
 
