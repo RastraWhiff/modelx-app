@@ -13,8 +13,8 @@ LABEL = ['Bisa Meminjam (0)', "Tidak Bisa Meminjam (1)"]
 st.title("Loan Eligibility Prediction")
 
 # Create input fields
-Applicant_Age = st.slider("Applicant Age", min_value=18, max_value=100, value=30)
-Work_Experience = st.slider("Work Experience", min_value=0, max_value=50, value=5)
+Applicant_Age = st.slider("Applicant Age", min_value=21, max_value=79, value=30)
+Work_Experience = st.slider("Work Experience", min_value=0, max_value=20, value=5)
 Marital_Status = st.selectbox("Marital Status", ["Single", "Married"])  # Changed to descriptive options
 House_Ownership = st.selectbox("House Ownership", ["No", "Yes"])  # Changed to descriptive options
 Vehicle_Ownership_Car = st.selectbox("Vehicle Ownership (Car)", ["No", "Yes"])  # Changed to descriptive options
@@ -53,6 +53,7 @@ if st.button("Predict"):
     result_label = LABEL[int(result[0])]
 
     st.write("Prediction Result: ", result_label)
+
 
 
 
