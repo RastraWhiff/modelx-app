@@ -15,7 +15,7 @@ st.title("Loan Eligibility Prediction")
 # Create input fields
 Applicant_Age = st.selectbox("Applicant Age", options=list(range(21, 80)), index=0)  # 30 Years = index 9
 Work_Experience = st.selectbox("Work Experience", options=list(range(0, 21)), index=1)  # 5 Years = index 5
-Marital_Status = st.radiobox("Marital Status", ["Married", "Single"])  # Changed to descriptive options
+Marital_Status = st.radio("Marital Status", ["Married", "Single"])  # Changed to descriptive options
 House_Ownership = st.selectbox("House Ownership", ["Not Both", "Owned", "Rented"])  # Changed to new options
 Vehicle_Ownership_Car = st.selectbox("Vehicle Ownership (Car)", ["No", "Yes"])  # Changed to descriptive options
 Occupation = st.selectbox("Occupation", [
