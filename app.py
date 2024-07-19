@@ -19,8 +19,17 @@ Marital_Status = st.selectbox("Marital Status", ["Married", "Single"])  # Change
 House_Ownership = st.selectbox("House Ownership", ["Not Both", "Owned", "Rented"])  # Changed to new options
 Vehicle_Ownership_Car = st.selectbox("Vehicle Ownership (Car)", ["No", "Yes"])  # Changed to descriptive options
 Occupation = st.selectbox("Occupation", [
-    "Unemployed", "Student", "Entry-level", "Mid-level", "Senior-level", 
-    "Manager", "Director", "Executive", "Business Owner", "Freelancer", "Other"
+    "Air traffic controller", "Analyst", "Architect", "Army officer", "Artist", "Aviator", 
+    "Biomedical Engineer", "Chartered Accountant", "Chef", "Chemical engineer", 
+    "Civil engineer", "Civil servant", "Comedian", "Computer hardware engineer", 
+    "Computer operator", "Consultant", "Dentist", "Design Engineer", "Designer", 
+    "Drafter", "Economist", "Engineer", "Fashion Designer", "Financial Analyst", 
+    "Firefighter", "Flight attendant", "Geologist", "Graphic Designer", "Hotel Manager", 
+    "Industrial Engineer", "Lawyer", "Librarian", "Magistrate", "Mechanical engineer", 
+    "Microbiologist", "Official", "Petroleum Engineer", "Physician", "Police officer", 
+    "Politician", "Psychologist", "Scientist", "Secretary", "Software Developer", 
+    "Statistician", "Surgeon", "Surveyor", "Technical writer", "Technician", 
+    "Technology specialist", "Web designer"
 ])
 Years_in_Current_Employment = st.slider("Years in Current Employment", min_value=0, max_value=50, value=10)
 Years_in_Current_Residence = st.slider("Years in Current Residence", min_value=0, max_value=50, value=5)
@@ -31,8 +40,17 @@ marital_status_mapping = {"Married": 0, "Single": 1}
 house_ownership_mapping = {"Not Both": 0, "Owned": 1, "Rented": 2}
 vehicle_ownership_car_mapping = {"No": 0, "Yes": 1}
 occupation_mapping = {
-    "Unemployed": 0, "Student": 1, "Entry-level": 2, "Mid-level": 3, "Senior-level": 4, 
-    "Manager": 5, "Director": 6, "Executive": 7, "Business Owner": 8, "Freelancer": 9, "Other": 10
+    "Air traffic controller": 0, "Analyst": 1, "Architect": 2, "Army officer": 3, "Artist": 4, "Aviator": 5, 
+    "Biomedical Engineer": 6, "Chartered Accountant": 7, "Chef": 8, "Chemical engineer": 9, 
+    "Civil engineer": 10, "Civil servant": 11, "Comedian": 12, "Computer hardware engineer": 13, 
+    "Computer operator": 14, "Consultant": 15, "Dentist": 16, "Design Engineer": 17, "Designer": 18, 
+    "Drafter": 19, "Economist": 20, "Engineer": 21, "Fashion Designer": 22, "Financial Analyst": 23, 
+    "Firefighter": 24, "Flight attendant": 25, "Geologist": 26, "Graphic Designer": 27, "Hotel Manager": 28, 
+    "Industrial Engineer": 29, "Lawyer": 30, "Librarian": 31, "Magistrate": 32, "Mechanical engineer": 33, 
+    "Microbiologist": 34, "Official": 35, "Petroleum Engineer": 36, "Physician": 37, "Police officer": 38, 
+    "Politician": 39, "Psychologist": 40, "Scientist": 41, "Secretary": 42, "Software Developer": 43, 
+    "Statistician": 44, "Surgeon": 45, "Surveyor": 46, "Technical writer": 47, "Technician": 48, 
+    "Technology specialist": 49, "Web designer": 50
 }
 
 # Prediction button
@@ -53,6 +71,7 @@ if st.button("Predict"):
     result_label = LABEL[int(result[0])]
 
     st.write("Prediction Result: ", result_label)
+
 
 
 
