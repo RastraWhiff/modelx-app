@@ -13,23 +13,86 @@ LABEL = ['Bisa Meminjam (0)', "Tidak Bisa Meminjam (1)"]
 st.title("Loan Eligibility Prediction")
 
 # Create input fields
-Applicant_Age = st.number_input("Applicant Age", min_value=0, max_value=100, value=30)
-Work_Experience = st.number_input("Work Experience", min_value=0, max_value=50, value=5)
-Marital_Status = st.selectbox("Marital Status", [0, 1])  # 0: Single, 1: Married (you can customize as needed)
-House_Ownership = st.selectbox("House Ownership", [0, 1])  # 0: No, 1: Yes (you can customize as needed)
-Vehicle_Ownership_Car = st.selectbox("Vehicle Ownership (Car)", [0, 1])  # 0: No, 1: Yes (you can customize as needed)
-Occupation = st.number_input("Occupation", min_value=0, max_value=10, value=1)  # Customize as needed
-Years_in_Current_Employment = st.number_input("Years in Current Employment", min_value=0, max_value=50, value=10)
-Years_in_Current_Residence = st.number_input("Years in Current Residence", min_value=0, max_value=50, value=5)
+Applicant_Age = st.slider("Applicant Age", min_value=18, max_value=100, value=30)
+Work_Experience = st.slider("Work Experience", min_value=0, max_value=50, value=5)
+Marital_Status = st.selectbox("Marital Status", ["Single", "Married"])  # Changed to descriptive options
+House_Ownership = st.selectbox("House Ownership", ["No", "Yes"])  # Changed to descriptive options
+Vehicle_Ownership_Car = st.selectbox("Vehicle Ownership (Car)", ["No", "Yes"])  # Changed to descriptive options
+Occupation = st.selectbox("Occupation", [
+    "Unemployed", "Student", "Entry-level", "Mid-level", "Senior-level", 
+    "Manager", "Director", "Executive", "Business Owner", "Freelancer", "Other"
+])
+Years_in_Current_Employment = st.slider("Years in Current Employment", min_value=0, max_value=50, value=10)
+Years_in_Current_Residence = st.slider("Years in Current Residence", min_value=0, max_value=50, value=5)
 Annual_Income_IDR = st.number_input("Annual Income (IDR)", min_value=0, value=50000000)
+
+# Map categorical inputs to numeric values
+marital_status_mapping = {"Single": 0, "Married": 1}
+house_ownership_mapping = {"No": 0, "Yes": 1}
+vehicle_ownership_car_mapping = {"No": 0, "Yes": 1}
+occupation_mapping = {
+    "Unemployed": 0, "Student": 1, "Entry-level": 2, "Mid-level": 3, "Senior-level": 4, 
+    "Manager": 5, "Director": 6, "Executive": 7, "Business Owner": 8, "Freelancer": 9, "Other": 10
+}
 
 # Prediction button
 if st.button("Predict"):
-    new_data = np.array([[Applicant_Age, Work_Experience, Marital_Status, House_Ownership, Vehicle_Ownership_Car, Occupation, Years_in_Current_Employment, Years_in_Current_Residence, Annual_Income_IDR]])
+    new_data = np.array([[
+        Applicant_Age, 
+        Work_Experience, 
+        marital_status_mapping[Marital_Status], 
+        house_ownership_mapping[House_Ownership], 
+        vehicle_ownership_car_mapping[Vehicle_Ownership_Car], 
+        occupation_mapping[Occupation], 
+        Years_in_Current_Employment, 
+        Years_in_Current_Residence, 
+        Annual_Income_IDR
+    ]])
+    
     result = xgb_model.predict(new_data)
     result_label = LABEL[int(result[0])]
 
     st.write("Prediction Result: ", result_label)
+
+
+
+
+
+
+
+# BENAR
+# import streamlit as st
+# import numpy as np
+# import xgboost as xgb
+# import pickle
+
+# # Load the model
+# with open("xgb_model.pkl", "rb") as model_file:
+#     xgb_model = pickle.load(model_file)
+
+# LABEL = ['Bisa Meminjam (0)', "Tidak Bisa Meminjam (1)"]
+
+# # Streamlit app
+# st.title("Loan Eligibility Prediction")
+
+# # Create input fields
+# Applicant_Age = st.number_input("Applicant Age", min_value=0, max_value=100, value=30)
+# Work_Experience = st.number_input("Work Experience", min_value=0, max_value=50, value=5)
+# Marital_Status = st.selectbox("Marital Status", [0, 1])  # 0: Single, 1: Married (you can customize as needed)
+# House_Ownership = st.selectbox("House Ownership", [0, 1])  # 0: No, 1: Yes (you can customize as needed)
+# Vehicle_Ownership_Car = st.selectbox("Vehicle Ownership (Car)", [0, 1])  # 0: No, 1: Yes (you can customize as needed)
+# Occupation = st.number_input("Occupation", min_value=0, max_value=10, value=1)  # Customize as needed
+# Years_in_Current_Employment = st.number_input("Years in Current Employment", min_value=0, max_value=50, value=10)
+# Years_in_Current_Residence = st.number_input("Years in Current Residence", min_value=0, max_value=50, value=5)
+# Annual_Income_IDR = st.number_input("Annual Income (IDR)", min_value=0, value=50000000)
+
+# # Prediction button
+# if st.button("Predict"):
+#     new_data = np.array([[Applicant_Age, Work_Experience, Marital_Status, House_Ownership, Vehicle_Ownership_Car, Occupation, Years_in_Current_Employment, Years_in_Current_Residence, Annual_Income_IDR]])
+#     result = xgb_model.predict(new_data)
+#     result_label = LABEL[int(result[0])]
+
+#     st.write("Prediction Result: ", result_label)
 
 
 
