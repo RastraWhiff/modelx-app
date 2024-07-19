@@ -13,13 +13,51 @@ LABEL = ['Bisa Meminjam (0)', "Tidak Bisa Meminjam (1)"]
 st.title("Loan Eligibility Prediction")
 
 # Create input fields
-age_options = [f"{i+21} Years" for i in range(59)]  # Generates age options from 21 to 79
-age_mapping = {f"{i+21} Years": i for i in range(59)}  # Creates a mapping from age to index
+age_options = [
+    "21 Years", "22 Years", "23 Years", "24 Years", "25 Years", "26 Years", "27 Years", 
+    "28 Years", "29 Years", "30 Years", "31 Years", "32 Years", "33 Years", "34 Years", 
+    "35 Years", "36 Years", "37 Years", "38 Years", "39 Years", "40 Years", "41 Years", 
+    "42 Years", "43 Years", "44 Years", "45 Years", "46 Years", "47 Years", "48 Years", 
+    "49 Years", "50 Years", "51 Years", "52 Years", "53 Years", "54 Years", "55 Years", 
+    "56 Years", "57 Years", "58 Years", "59 Years", "60 Years", "61 Years", "62 Years", 
+    "63 Years", "64 Years", "65 Years", "66 Years", "67 Years", "68 Years", "69 Years", 
+    "70 Years", "71 Years", "72 Years", "73 Years", "74 Years", "75 Years", "76 Years", 
+    "77 Years", "78 Years", "79 Years"
+]
+
+# Adjusted numeric values for each age option
+age_mapping = {
+    "21 Years": 0, "22 Years": 1, "23 Years": 2, "24 Years": 3, "25 Years": 4, 
+    "26 Years": 5, "27 Years": 6, "28 Years": 7, "29 Years": 8, "30 Years": 9, 
+    "31 Years": 10, "32 Years": 11, "33 Years": 12, "34 Years": 13, "35 Years": 14, 
+    "36 Years": 15, "37 Years": 16, "38 Years": 17, "39 Years": 18, "40 Years": 19, 
+    "41 Years": 20, "42 Years": 21, "43 Years": 22, "44 Years": 23, "45 Years": 24, 
+    "46 Years": 25, "47 Years": 26, "48 Years": 27, "49 Years": 28, "50 Years": 29, 
+    "51 Years": 30, "52 Years": 31, "53 Years": 32, "54 Years": 33, "55 Years": 34, 
+    "56 Years": 35, "57 Years": 36, "58 Years": 37, "59 Years": 38, "60 Years": 39, 
+    "61 Years": 40, "62 Years": 41, "63 Years": 42, "64 Years": 43, "65 Years": 44, 
+    "66 Years": 45, "67 Years": 46, "68 Years": 47, "69 Years": 48, "70 Years": 49, 
+    "71 Years": 50, "72 Years": 51, "73 Years": 52, "74 Years": 53, "75 Years": 54, 
+    "76 Years": 55, "77 Years": 56, "78 Years": 57, "79 Years": 58
+}
+
+# Mapping for work experience, years in current employment, and years in current residence
+experience_mapping = {i: i for i in range(0, 21)}  # Direct mapping since values are already numeric
+employment_years_mapping = {i: i for i in range(0, 15)}  # Direct mapping since values are already numeric
+residence_years_mapping = {i: i for i in range(10, 15)}  # Direct mapping since values are already numeric
 
 Applicant_Age = st.selectbox("Applicant Age", options=age_options, index=0)  # Default to "21 Years"
-Applicant_Age_numeric = age_mapping[Applicant_Age] + 21  # Map selected option to numeric value
+Applicant_Age_numeric = age_mapping[Applicant_Age]  # Map selected option to adjusted numeric value
 
-Work_Experience = st.selectbox("Work Experience", options=list(range(0, 21)), index=1)  # 5 Years = index 5
+Work_Experience = st.selectbox("Work Experience", options=list(experience_mapping.keys()), index=1)  # Default to 1 Year
+Work_Experience_numeric = experience_mapping[Work_Experience]
+
+Years_in_Current_Employment = st.selectbox("Years in Current Employment", options=list(employment_years_mapping.keys()), index=1)  # Default to 1 Year
+Years_in_Current_Employment_numeric = employment_years_mapping[Years_in_Current_Employment]
+
+Years_in_Current_Residence = st.selectbox("Years in Current Residence", options=list(residence_years_mapping.keys()), index=3)  # Default to 13 Years
+Years_in_Current_Residence_numeric = residence_years_mapping[Years_in_Current_Residence]
+
 Marital_Status = st.selectbox("Marital Status", ["Married", "Single"])  # Changed to descriptive options
 House_Ownership = st.selectbox("House Ownership", ["Not Both", "Owned", "Rented"])  # Changed to new options
 Vehicle_Ownership_Car = st.selectbox("Vehicle Ownership (Car)", ["No", "Yes"])  # Changed to descriptive options
@@ -36,39 +74,26 @@ Occupation = st.selectbox("Occupation", [
     "Statistician", "Surgeon", "Surveyor", "Technical writer", "Technician", 
     "Technology specialist", "Web designer"
 ])
-Years_in_Current_Employment = st.selectbox("Years in Current Employment", options=list(range(0, 15)), index=1)  # 10 Years = index 10
-Years_in_Current_Residence = st.selectbox("Years in Current Residence", options=list(range(10, 15)), index=3)  # 10 Years = index 0
+Occupation_numeric = occupation_mapping[Occupation]
+
 Annual_Income_IDR = st.number_input("Annual Income (IDR)", min_value=0, value=50000000)
 
 # Map categorical inputs to numeric values
 marital_status_mapping = {"Married": 0, "Single": 1}
 house_ownership_mapping = {"Not Both": 0, "Owned": 1, "Rented": 2}
 vehicle_ownership_car_mapping = {"No": 0, "Yes": 1}
-occupation_mapping = {
-    "Air traffic controller": 0, "Analyst": 1, "Architect": 2, "Army officer": 3, "Artist": 4, "Aviator": 5, 
-    "Biomedical Engineer": 6, "Chartered Accountant": 7, "Chef": 8, "Chemical engineer": 9, 
-    "Civil engineer": 10, "Civil servant": 11, "Comedian": 12, "Computer hardware engineer": 13, 
-    "Computer operator": 14, "Consultant": 15, "Dentist": 16, "Design Engineer": 17, "Designer": 18, 
-    "Drafter": 19, "Economist": 20, "Engineer": 21, "Fashion Designer": 22, "Financial Analyst": 23, 
-    "Firefighter": 24, "Flight attendant": 25, "Geologist": 26, "Graphic Designer": 27, "Hotel Manager": 28, 
-    "Industrial Engineer": 29, "Lawyer": 30, "Librarian": 31, "Magistrate": 32, "Mechanical engineer": 33, 
-    "Microbiologist": 34, "Official": 35, "Petroleum Engineer": 36, "Physician": 37, "Police officer": 38, 
-    "Politician": 39, "Psychologist": 40, "Scientist": 41, "Secretary": 42, "Software Developer": 43, 
-    "Statistician": 44, "Surgeon": 45, "Surveyor": 46, "Technical writer": 47, "Technician": 48, 
-    "Technology specialist": 49, "Web designer": 50
-}
 
 # Prediction button
 if st.button("Predict"):
     new_data = np.array([[
         Applicant_Age_numeric, 
-        Work_Experience, 
+        Work_Experience_numeric, 
         marital_status_mapping[Marital_Status], 
         house_ownership_mapping[House_Ownership], 
         vehicle_ownership_car_mapping[Vehicle_Ownership_Car], 
-        occupation_mapping[Occupation], 
-        Years_in_Current_Employment, 
-        Years_in_Current_Residence, 
+        Occupation_numeric, 
+        Years_in_Current_Employment_numeric, 
+        Years_in_Current_Residence_numeric, 
         Annual_Income_IDR
     ]])
     
@@ -76,6 +101,7 @@ if st.button("Predict"):
     result_label = LABEL[int(result[0])]
 
     st.write("Prediction Result: ", result_label)
+
 
 
 
