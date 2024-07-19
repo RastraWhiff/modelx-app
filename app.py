@@ -31,8 +31,8 @@ Occupation = st.selectbox("Occupation", [
     "Statistician", "Surgeon", "Surveyor", "Technical writer", "Technician", 
     "Technology specialist", "Web designer"
 ])
-Years_in_Current_Employment = st.slider("Years in Current Employment", min_value=0, max_value=50, value=10)
-Years_in_Current_Residence = st.slider("Years in Current Residence", min_value=0, max_value=50, value=5)
+Years_in_Current_Employment = st.slider("Years in Current Employment", min_value=0, max_value=14, value=10)
+Years_in_Current_Residence = st.slider("Years in Current Residence", min_value=10, max_value=14, value=10)
 Annual_Income_IDR = st.number_input("Annual Income (IDR)", min_value=0, value=50000000)
 
 # Map categorical inputs to numeric values
@@ -71,6 +71,7 @@ if st.button("Predict"):
     result_label = LABEL[int(result[0])]
 
     st.write("Prediction Result: ", result_label)
+
 
 
 
