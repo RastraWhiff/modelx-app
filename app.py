@@ -16,7 +16,7 @@ st.title("Loan Eligibility Prediction")
 Applicant_Age = st.slider("Applicant Age", min_value=21, max_value=79, value=30)
 Work_Experience = st.slider("Work Experience", min_value=0, max_value=20, value=5)
 Marital_Status = st.selectbox("Marital Status", ["Married", "Single"])  # Changed to descriptive options
-House_Ownership = st.selectbox("House Ownership", ["Not Both", "Owned"])  # Changed to descriptive options
+House_Ownership = st.selectbox("House Ownership", ["Not Both", "Owned", "Rented"])  # Changed to new options
 Vehicle_Ownership_Car = st.selectbox("Vehicle Ownership (Car)", ["No", "Yes"])  # Changed to descriptive options
 Occupation = st.selectbox("Occupation", [
     "Unemployed", "Student", "Entry-level", "Mid-level", "Senior-level", 
@@ -27,8 +27,8 @@ Years_in_Current_Residence = st.slider("Years in Current Residence", min_value=0
 Annual_Income_IDR = st.number_input("Annual Income (IDR)", min_value=0, value=50000000)
 
 # Map categorical inputs to numeric values
-marital_status_mapping = {"Single": 0, "Married": 1}
-house_ownership_mapping = {"No": 0, "Yes": 1}
+marital_status_mapping = {"Married": 0, "Single": 1}
+house_ownership_mapping = {"Not Both": 0, "Owned": 1, "Rented": 2}
 vehicle_ownership_car_mapping = {"No": 0, "Yes": 1}
 occupation_mapping = {
     "Unemployed": 0, "Student": 1, "Entry-level": 2, "Mid-level": 3, "Senior-level": 4, 
