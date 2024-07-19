@@ -4,7 +4,7 @@ import xgboost as xgb
 import pickle
 
 # Load the model
-with open("model/xgb_model.pkl", "rb") as model_file:
+with open("xgb_model.pkl", "rb") as model_file:
     xgb_model = pickle.load(model_file)
 
 LABEL = ['Bisa Meminjam (0)', "Tidak Bisa Meminjam (1)"]
