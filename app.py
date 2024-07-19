@@ -13,8 +13,8 @@ LABEL = ['Bisa Meminjam (0)', "Tidak Bisa Meminjam (1)"]
 st.title("Loan Eligibility Prediction")
 
 # Create input fields
-Applicant_Age = st.slider("Applicant Age", min_value=21, max_value=79, value=30)
-Work_Experience = st.slider("Work Experience", min_value=0, max_value=20, value=5)
+Applicant_Age = st.selectbox("Applicant Age", options=list(range(21, 80)), index=9)  # 30 Years = index 9
+Work_Experience = st.selectbox("Work Experience", options=list(range(0, 21)), index=5)  # 5 Years = index 5
 Marital_Status = st.selectbox("Marital Status", ["Married", "Single"])  # Changed to descriptive options
 House_Ownership = st.selectbox("House Ownership", ["Not Both", "Owned", "Rented"])  # Changed to new options
 Vehicle_Ownership_Car = st.selectbox("Vehicle Ownership (Car)", ["No", "Yes"])  # Changed to descriptive options
@@ -31,8 +31,8 @@ Occupation = st.selectbox("Occupation", [
     "Statistician", "Surgeon", "Surveyor", "Technical writer", "Technician", 
     "Technology specialist", "Web designer"
 ])
-Years_in_Current_Employment = st.slider("Years in Current Employment", min_value=0, max_value=14, value=10)
-Years_in_Current_Residence = st.slider("Years in Current Residence", min_value=10, max_value=14, value=10)
+Years_in_Current_Employment = st.selectbox("Years in Current Employment", options=list(range(0, 15)), index=10)  # 10 Years = index 10
+Years_in_Current_Residence = st.selectbox("Years in Current Residence", options=list(range(10, 15)), index=0)  # 10 Years = index 0
 Annual_Income_IDR = st.number_input("Annual Income (IDR)", min_value=0, value=50000000)
 
 # Map categorical inputs to numeric values
@@ -71,6 +71,7 @@ if st.button("Predict"):
     result_label = LABEL[int(result[0])]
 
     st.write("Prediction Result: ", result_label)
+
 
 
 
