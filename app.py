@@ -13,7 +13,7 @@ LABEL = ['Bisa Meminjam (0)', "Tidak Bisa Meminjam (1)"]
 st.title("Loan Eligibility Prediction")
 
 # Create input fields
-Applicant_Age = st.selectbox("Applicant Age", options=list(range(21, 80)), index=9)  # 30 Years = index 9
+Applicant_Age = st.selectbox("Applicant Age", options=list(range(21, 80)), index=0)  # 30 Years = index 9
 Work_Experience = st.selectbox("Work Experience", options=list(range(0, 21)), index=5)  # 5 Years = index 5
 Marital_Status = st.selectbox("Marital Status", ["Married", "Single"])  # Changed to descriptive options
 House_Ownership = st.selectbox("House Ownership", ["Not Both", "Owned", "Rented"])  # Changed to new options
