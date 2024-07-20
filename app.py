@@ -24,7 +24,11 @@ Applicant_Age = st.selectbox("Applicant Age", [
     "70 Years", "71 Years", "72 Years", "73 Years", "74 Years", "75 Years", "76 Years", 
     "77 Years", "78 Years", "79 Years"
 ])
-Work_Experience = st.selectbox("Work Experience", options=list(range(0, 21)), index=1)  # 5 Years = index 5
+Work_Experience = st.selectbox("Work Experience", [
+    "0 Years", "1 Year", "2 Years", "3 Years", "4 Years", "5 Years", "6 Years", "7 Years", 
+    "8 Years", "9 Years", "10 Years", "11 Years", "12 Years", "13 Years", "14 Years", 
+    "15 Years", "16 Years", "17 Years", "18 Years", "19 Years", "20 Years"
+])
 Marital_Status = st.radio("Marital Status", ["Married", "Single"])  # Changed to descriptive options
 House_Ownership = st.selectbox("House Ownership", ["Not Both", "Owned", "Rented"])  # Changed to new options
 Vehicle_Ownership_Car = st.selectbox("Vehicle Ownership (Car)", ["No", "Yes"])  # Changed to descriptive options
@@ -41,9 +45,15 @@ Occupation = st.selectbox("Occupation", [
     "Statistician", "Surgeon", "Surveyor", "Technical writer", "Technician", 
     "Technology specialist", "Web designer"
 ])
-Years_in_Current_Employment = st.selectbox("Years in Current Employment", options=list(range(0, 15)), index=1)  # 10 Years = index 10
-Years_in_Current_Residence = st.selectbox("Years in Current Residence", options=list(range(10, 15)), index=3)  # 10 Years = index 0
+Years_in_Current_Employment = st.selectbox("Years in Current Employment", [
+    "0 Years", "1 Year", "2 Years", "3 Years", "4 Years", "5 Years", "6 Years", "7 Years", 
+    "8 Years", "9 Years", "10 Years", "11 Years", "12 Years", "13 Years", "14 Years"
+])
+Years_in_Current_Residence = st.selectbox("Years in Current Residence", [
+    "10 Years", "11 Years", "12 Years", "13 Years", "14 Years"
+])
 Annual_Income_IDR = st.number_input("Annual Income (IDR)", min_value=0, value=50000000)
+
 
 # Map categorical inputs to numeric values
 Applicant_Age_mapping = {
@@ -57,6 +67,12 @@ Applicant_Age_mapping = {
     "63 Years": 42, "64 Years": 43, "65 Years": 44, "66 Years": 45, "67 Years": 46, "68 Years": 47, 
     "69 Years": 48, "70 Years": 49, "71 Years": 50, "72 Years": 51, "73 Years": 52, "74 Years": 53, 
     "75 Years": 54, "76 Years": 55, "77 Years": 56, "78 Years": 57, "79 Years": 58
+}
+Work_Experience_mapping = {
+    "0 Years": 0, "1 Year": 1, "2 Years": 2, "3 Years": 3, "4 Years": 4, "5 Years": 5, 
+    "6 Years": 6, "7 Years": 7, "8 Years": 8, "9 Years": 9, "10 Years": 10, "11 Years": 11, 
+    "12 Years": 12, "13 Years": 13, "14 Years": 14, "15 Years": 15, "16 Years": 16, "17 Years": 17, 
+    "18 Years": 18, "19 Years": 19, "20 Years": 20
 }
 marital_status_mapping = {"Married": 0, "Single": 1}
 house_ownership_mapping = {"Not Both": 0, "Owned": 1, "Rented": 2}
@@ -73,6 +89,14 @@ occupation_mapping = {
     "Politician": 39, "Psychologist": 40, "Scientist": 41, "Secretary": 42, "Software Developer": 43, 
     "Statistician": 44, "Surgeon": 45, "Surveyor": 46, "Technical writer": 47, "Technician": 48, 
     "Technology specialist": 49, "Web designer": 50
+}
+Years_in_Current_Employment_mapping = {
+    "0 Years": 0, "1 Year": 1, "2 Years": 2, "3 Years": 3, "4 Years": 4, "5 Years": 5, 
+    "6 Years": 6, "7 Years": 7, "8 Years": 8, "9 Years": 9, "10 Years": 10, "11 Years": 11, 
+    "12 Years": 12, "13 Years": 13, "14 Years": 14
+}
+Years_in_Current_Residence_mapping = {
+    "10 Years": 0, "11 Years": 1, "12 Years": 2, "13 Years": 3, "14 Years": 4
 }
 
 # Prediction button
