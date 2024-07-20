@@ -56,7 +56,7 @@ Annual_Income_IDR = st.number_input("Annual Income (IDR)", min_value=0, value=50
 
 
 # Map categorical inputs to numeric values
-Applicant_Age_mapping = {
+applicant_age_mapping = {
     "21 Years": 0, "22 Years": 1, "23 Years": 2, "24 Years": 3, "25 Years": 4, "26 Years": 5, 
     "27 Years": 6, "28 Years": 7, "29 Years": 8, "30 Years": 9, "31 Years": 10, "32 Years": 11, 
     "33 Years": 12, "34 Years": 13, "35 Years": 14, "36 Years": 15, "37 Years": 16, "38 Years": 17, 
@@ -68,7 +68,7 @@ Applicant_Age_mapping = {
     "69 Years": 48, "70 Years": 49, "71 Years": 50, "72 Years": 51, "73 Years": 52, "74 Years": 53, 
     "75 Years": 54, "76 Years": 55, "77 Years": 56, "78 Years": 57, "79 Years": 58
 }
-Work_Experience_mapping = {
+work_experience_mapping = {
     "0 Years": 0, "1 Year": 1, "2 Years": 2, "3 Years": 3, "4 Years": 4, "5 Years": 5, 
     "6 Years": 6, "7 Years": 7, "8 Years": 8, "9 Years": 9, "10 Years": 10, "11 Years": 11, 
     "12 Years": 12, "13 Years": 13, "14 Years": 14, "15 Years": 15, "16 Years": 16, "17 Years": 17, 
@@ -90,26 +90,26 @@ occupation_mapping = {
     "Statistician": 44, "Surgeon": 45, "Surveyor": 46, "Technical writer": 47, "Technician": 48, 
     "Technology specialist": 49, "Web designer": 50
 }
-Years_in_Current_Employment_mapping = {
+years_in_current_employment_mapping = {
     "0 Years": 0, "1 Year": 1, "2 Years": 2, "3 Years": 3, "4 Years": 4, "5 Years": 5, 
     "6 Years": 6, "7 Years": 7, "8 Years": 8, "9 Years": 9, "10 Years": 10, "11 Years": 11, 
     "12 Years": 12, "13 Years": 13, "14 Years": 14
 }
-Years_in_Current_Residence_mapping = {
+years_in_current_residence_mapping = {
     "10 Years": 0, "11 Years": 1, "12 Years": 2, "13 Years": 3, "14 Years": 4
 }
 
 # Prediction button
 if st.button("Predict"):
     new_data = np.array([[
-        Applicant_Age, 
-        Work_Experience, 
+        applicant_age_mapping[Applicant_Age], 
+        work_experience_mapping[Work_Experience], 
         marital_status_mapping[Marital_Status], 
         house_ownership_mapping[House_Ownership], 
         vehicle_ownership_car_mapping[Vehicle_Ownership_Car], 
         occupation_mapping[Occupation], 
-        Years_in_Current_Employment, 
-        Years_in_Current_Residence, 
+        years_in_current_employment_mapping[Years_in_Current_Employment], 
+        years_in_current_residence_mapping[Years_in_Current_Residence], 
         Annual_Income_IDR
     ]])
     
