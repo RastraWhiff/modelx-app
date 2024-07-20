@@ -13,7 +13,17 @@ LABEL = ['Bisa Meminjam (0)', "Tidak Bisa Meminjam (1)"]
 st.title("Loan Eligibility Prediction")
 
 # Create input fields
-Applicant_Age = st.selectbox("Applicant Age", options=list(range(21, 80)), index=0)  # 30 Years = index 9
+Applicant_Age = st.selectbox("Applicant Age", [
+    "21 Years", "22 Years", "23 Years", "24 Years", "25 Years", "26 Years", "27 Years", 
+    "28 Years", "29 Years", "30 Years", "31 Years", "32 Years", "33 Years", "34 Years", 
+    "35 Years", "36 Years", "37 Years", "38 Years", "39 Years", "40 Years", "41 Years", 
+    "42 Years", "43 Years", "44 Years", "45 Years", "46 Years", "47 Years", "48 Years", 
+    "49 Years", "50 Years", "51 Years", "52 Years", "53 Years", "54 Years", "55 Years", 
+    "56 Years", "57 Years", "58 Years", "59 Years", "60 Years", "61 Years", "62 Years", 
+    "63 Years", "64 Years", "65 Years", "66 Years", "67 Years", "68 Years", "69 Years", 
+    "70 Years", "71 Years", "72 Years", "73 Years", "74 Years", "75 Years", "76 Years", 
+    "77 Years", "78 Years", "79 Years"
+])
 Work_Experience = st.selectbox("Work Experience", options=list(range(0, 21)), index=1)  # 5 Years = index 5
 Marital_Status = st.radio("Marital Status", ["Married", "Single"])  # Changed to descriptive options
 House_Ownership = st.selectbox("House Ownership", ["Not Both", "Owned", "Rented"])  # Changed to new options
@@ -36,6 +46,18 @@ Years_in_Current_Residence = st.selectbox("Years in Current Residence", options=
 Annual_Income_IDR = st.number_input("Annual Income (IDR)", min_value=0, value=50000000)
 
 # Map categorical inputs to numeric values
+Applicant_Age_mapping = {
+    "21 Years": 0, "22 Years": 1, "23 Years": 2, "24 Years": 3, "25 Years": 4, "26 Years": 5, 
+    "27 Years": 6, "28 Years": 7, "29 Years": 8, "30 Years": 9, "31 Years": 10, "32 Years": 11, 
+    "33 Years": 12, "34 Years": 13, "35 Years": 14, "36 Years": 15, "37 Years": 16, "38 Years": 17, 
+    "39 Years": 18, "40 Years": 19, "41 Years": 20, "42 Years": 21, "43 Years": 22, "44 Years": 23, 
+    "45 Years": 24, "46 Years": 25, "47 Years": 26, "48 Years": 27, "49 Years": 28, "50 Years": 29, 
+    "51 Years": 30, "52 Years": 31, "53 Years": 32, "54 Years": 33, "55 Years": 34, "56 Years": 35, 
+    "57 Years": 36, "58 Years": 37, "59 Years": 38, "60 Years": 39, "61 Years": 40, "62 Years": 41, 
+    "63 Years": 42, "64 Years": 43, "65 Years": 44, "66 Years": 45, "67 Years": 46, "68 Years": 47, 
+    "69 Years": 48, "70 Years": 49, "71 Years": 50, "72 Years": 51, "73 Years": 52, "74 Years": 53, 
+    "75 Years": 54, "76 Years": 55, "77 Years": 56, "78 Years": 57, "79 Years": 58
+}
 marital_status_mapping = {"Married": 0, "Single": 1}
 house_ownership_mapping = {"Not Both": 0, "Owned": 1, "Rented": 2}
 vehicle_ownership_car_mapping = {"No": 0, "Yes": 1}
