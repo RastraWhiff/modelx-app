@@ -4,9 +4,13 @@ import numpy as np
 import xgboost as xgb
 import pickle
 
-# Load the model
-with open("xgb_model.pkl", "rb") as model_file:
-    xgb_model = pickle.load(model_file)
+# # Load the model
+# with open("xgb_model.pkl", "rb") as model_file:
+#     xgb_model = pickle.load(model_file)
+
+# Load the model best
+with open("best_xgb_model.pkl", "rb") as model_file:
+    best_xgb_model = pickle.load(model_file)
 
 LABEL = ['Bisa Meminjam (0)', "Tidak Bisa Meminjam (1)"]
 
@@ -114,7 +118,12 @@ if st.button("Predict"):
         Annual_Income_IDR
     ]])
     
-    result = xgb_model.predict(new_data)
+    # # model
+    # result = xgb_model.predict(new_data)
+
+    # model best
+    result = best_xgb_model.predict(new_data)
+
     result_label = LABEL[int(result[0])]
 
     st.write("Prediction Result: ", result_label)
