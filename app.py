@@ -10,7 +10,7 @@ with open("xgb_model.pkl", "rb") as model_file:
 LABEL = ['Bisa Meminjam (0)', "Tidak Bisa Meminjam (1)"]
 
 # Streamlit app
-st.title("Loan Eligibility Prediction")
+st.title("Cek Apakah Anda Berhak Mendapat Pinjaman")
 
 # Create input fields
 Applicant_Age = st.selectbox("Applicant Age", [
@@ -30,8 +30,8 @@ Work_Experience = st.selectbox("Work Experience", [
     "15 Years", "16 Years", "17 Years", "18 Years", "19 Years", "20 Years"
 ])
 Marital_Status = st.radio("Marital Status", ["Married", "Single"])  # Changed to descriptive options
-House_Ownership = st.selectbox("House Ownership", ["Not Both", "Owned", "Rented"])  # Changed to new options
-Vehicle_Ownership_Car = st.selectbox("Vehicle Ownership (Car)", ["No", "Yes"])  # Changed to descriptive options
+House_Ownership = st.radio("House Ownership", ["Not Both", "Owned", "Rented"])  # Changed to new options
+Vehicle_Ownership_Car = st.radio("Vehicle Ownership (Car)", ["No", "Yes"])  # Changed to descriptive options
 Occupation = st.selectbox("Occupation", [
     "Air traffic controller", "Analyst", "Architect", "Army officer", "Artist", "Aviator", 
     "Biomedical Engineer", "Chartered Accountant", "Chef", "Chemical engineer", 
