@@ -8,8 +8,12 @@ import pickle
 # with open("xgb_model.pkl", "rb") as model_file:
 #     xgb_model = pickle.load(model_file)
 
+# # Load the model best
+# with open("best_xgb_model.pkl", "rb") as model_file:
+#     best_xgb_model = pickle.load(model_file)
+
 # Load the model best
-with open("best_xgb_model.pkl", "rb") as model_file:
+with open("best_xgb_model_ratio_20.pkl", "rb") as model_file:
     best_xgb_model = pickle.load(model_file)
 
 LABEL = ['Bisa Meminjam (0)', "Tidak Bisa Meminjam (1)"]
