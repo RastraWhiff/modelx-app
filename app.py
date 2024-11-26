@@ -4,11 +4,11 @@ import numpy as np
 import pickle
 
 # Load the models
-with open("best_xgb_model_ratio_20.pkl", "rb") as xgb_file:
-    best_xgb_model = pickle.load(xgb_file)
+with open("best_xgb_model_ratio_20.pkl", "rb") as model_file:
+    best_xgb_model = pickle.load(model_file)
 
-with open("best_c45_model_ratio_20.pkl", "rb") as c45_file:
-    best_c45_model = pickle.load(c45_file)
+with open("best_c45_model_ratio_20.pkl", "rb") as model_file:
+    best_c45_model = pickle.load(model_file)
 
 LABEL = ['Bisa Meminjam (0)', "Tidak Bisa Meminjam (1)"]
 
